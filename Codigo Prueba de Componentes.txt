@@ -1,0 +1,366 @@
+
+//MOTORES 
+int MA1 = 5; //D1
+int MA2 = 0; //D3 
+int MB1 = 4; //D2 
+int MB2 = 2; //D4 
+
+//LUCES LED
+int led1 = 16; //D0
+int led2 = 15; //D8
+
+//SENSOR ULTRASONIDO
+int echoPin = 14; //D5 se encarga de recibir los datos de la onda ultrasonica enviada.
+int trigPin = 12; //D6 se encarga de enviar la onda ultrasonica.
+long duration;
+int distance;
+
+//BUZZER
+int buzzerPin = 13; //D7
+int cuarto = 1000 / 4;
+int octavo = 1000 / 8;
+double pausa = 1.30;
+
+void setup(){
+ Serial.begin(9600);
+  
+ Serial.println("Test General ...");
+ Serial.println("Tomasitto V1.2");
+
+ pinMode(MA1,OUTPUT);
+ pinMode(MA2,OUTPUT);
+ pinMode(MB1,OUTPUT);
+ pinMode(MB2,OUTPUT);
+
+ pinMode(led1,OUTPUT);
+ pinMode(led2,OUTPUT);
+
+ pinMode(echoPin, INPUT);
+ pinMode(trigPin, OUTPUT);
+
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW); 
+}
+
+void loop(){
+ //----TEST MOTORES Y LUCES LED----
+ //----TEST SENSOR ULTRASONIDO----
+ //----TEST BUZZER----
+ testMotores();
+ testUltrasonido();
+ testBuzzer();
+}
+
+void testUltrasonido(){
+  Serial.println("Test Ultrasonido");
+  delay(1000);
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  digitalWrite(led1, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW); 
+  duration = pulseIn(echoPin, HIGH);
+  digitalWrite(led1, LOW); 
+  digitalWrite(led2, HIGH); 
+  Serial.println(duration); 
+  distance = duration * 0.034 / 2;
+  Serial.println("Distancia: ");
+  Serial.print(distance);
+  Serial.print(" cm");
+  digitalWrite(led2, LOW);
+  delay(1000);
+
+}
+
+void testMotores(){
+ delay(2000);
+ //TEST MOTOR A: RUEDA DERECHA
+ Serial.println("Motor A MOV1");
+ digitalWrite(led1,HIGH);
+ digitalWrite(led2,LOW);
+ digitalWrite(MA1, HIGH);
+ digitalWrite(MA2, LOW);
+ delay(2000);
+ //RESULTADO: RUEDA DERECHA SE MUEVE HACIA ADELANTE
+
+ //STOP
+ Serial.println("Motor A PAUSA 1");
+ digitalWrite(MA1,LOW);
+ digitalWrite(MA2,LOW);
+ delay(750);
+
+ Serial.println("Motor A MOV2");
+ digitalWrite(MA1, HIGH);
+ digitalWrite(MA2, HIGH);
+ delay(2000);
+ //RESULTADO: RUEDA DERECHA SE MUEVE HACIA ATRAS
+
+ //STOP
+ Serial.println("Motor A PAUSA 2");
+ digitalWrite(MA1,LOW);
+ digitalWrite(MA2,LOW);
+ delay(750);
+
+ //TEST MOTOR B: RUEDA IZQUIERDA 
+ Serial.println("Motor B MOV1");
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,HIGH);
+ digitalWrite(MB1, HIGH); 
+ digitalWrite(MB2, LOW);
+
+ delay(2000);
+ //RESULTADO: RUEDA IZQUIERDA SE MUEVE HACIA ATRAS
+
+ //STOP
+ Serial.println("Motor B PAUSA 1");
+ digitalWrite(MB1, LOW);
+ digitalWrite(MB2, LOW);
+ delay(750);
+
+
+ Serial.println("Motor B MOV2");
+ digitalWrite(MB1, HIGH); 
+ digitalWrite(MB2, HIGH);
+ delay(2000);
+ //RESULTADO: RUEDA IZQUIERDA SE MUEVE HACIA ADELANTE
+
+ //STOP
+ Serial.println("Motor B PAUSA 2");
+ digitalWrite(MB1, LOW);
+ digitalWrite(MB2, LOW);
+ delay(750);
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW);
+ delay(1250);
+
+}
+
+
+void testBuzzer(){
+  Serial.println("\nTest buzzer"); 
+    tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 247);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(949);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 247);
+  delay(1108);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 247);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 247);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 440);
+  delay(474);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 370);
+  delay(158);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 330);
+  delay(316);
+  noTone(buzzerPin);
+
+  tone(buzzerPin, 294);
+  delay(791);
+  noTone(buzzerPin);
+  
+}
